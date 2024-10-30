@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Casamento - Bruna & Marcelo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url('./malevola.png'); 
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4em;
+            color: #e61212;
+            margin-bottom: 0.3em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 4em;
+            font-family: 'Great Vibes', cursive;
+            color: #6d1056;
+            margin-bottom: 1em;
+            text-shadow: 3px 3px 6px rgba(205, 223, 128, 0.4);
+        }
+
+        .invitation-text {
+            font-size: 1.7em;
+            color: #555;
+            margin: 1em 0;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin: 1em 0;
+        }
+
+        input[type="text"] {
+            padding: 0.5em;
+            font-size: 1.2em;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-top: 0.5em;
+            text-align: center;
+            width: 80%;
+        }
+
+        .btn {
+            margin-top: 1.5em;
+            padding: 0.7em 1.5em;
+            background-color: #4d9a6a;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: #ffb703;
+            color: #4d9a6a;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nosso Casamento</h1>
+    <h2>Bruna & Marcelo</h2>
+    <p class="invitation-text">
+        Você está convidado para celebrar o amor eterno entre Bruna e Marcelo.<br>
+        Venha compartilhar este momento mágico e inesquecível!
+    </p>
+    <p class="invitation-text">
+        <strong>Data:</strong> 02 de fevereiro de 2024<br>
+        <strong>Local:</strong> Castelo Encantado, Floresta Proibida
+    </p>
+
+    <div class="form-group">
+        <label for="name">Digite seu nome:</label>
+        <input type="text" id="name" placeholder="Seu nome">
+    </div>
+
+    <div class="form-group">
+        <label>Você aceita o convite?</label><br>
+        <button class="btn" onclick="confirmPresence(true)">Aceito</button>
+        <button class="btn" onclick="confirmPresence(false)">Recusar</button>
+    </div>
+
+    <div id="guestChoice" class="form-group hidden">
+        <label>Você é convidado de:</label><br>
+        <button class="btn" onclick="chooseSide('Bruna')">Bruna</button>
+        <button class="btn" onclick="chooseSide('Marcelo')">Marcelo</button>
+    </div>
+
+    <div id="finalMessage" class="form-group hidden invitation-text"></div>
+
+    <script>
+        function confirmPresence(accepted) {
+            const name = document.getElementById("name").value;
+            if (name === "") {
+                alert("Por favor, digite seu nome.");
+                return;
+            }
+
+            if (accepted) {
+                document.getElementById("guestChoice").classList.remove("hidden");
+            } else {
+                document.getElementById("finalMessage").classList.remove("hidden");
+                document.getElementById("finalMessage").innerText = `Que pena, ${name}. Sentiremos sua falta no casamento de Bruna e Marcelo.`;
+            }
+        }
+
+        function chooseSide(side) {
+            const name = document.getElementById("name").value;
+            document.getElementById("finalMessage").classList.remove("hidden");
+            document.getElementById("finalMessage").innerText = `Obrigado pela confirmação, ${name}! Estamos ansiosos para recebê-lo como convidado de ${side}.`;
+            document.getElementById("guestChoice").classList.add("hidden");
+        }
+    </script>
+</body>
+</html>
